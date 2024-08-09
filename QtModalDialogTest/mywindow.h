@@ -1,9 +1,9 @@
 #ifndef MYWINDOW_H
 #define MYWINDOW_H
 
-#include <QWindow>
+#include <QWidget>
 
-class MyWindow : public QWindow
+class MyWindow : public QWidget
 {
     Q_OBJECT
 public:

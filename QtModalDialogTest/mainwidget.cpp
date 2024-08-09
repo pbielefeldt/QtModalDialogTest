@@ -1,4 +1,4 @@
-#include "mywidget.h"
+#include "mainwidget.h"
 #include "mydialog.h"
 #include "mywindow.h"
 
@@ -7,7 +7,7 @@
 #include <QDialog>
 #include <QLabel>
 
-MyWidget::MyWidget(DialogParent dialog_parent, QWidget *parent)
+MyMainWidget::MyMainWidget(DialogParent dialog_parent, QWidget *parent)
     : QWidget{parent}
 {
     QWidget *use_as_parent = nullptr;
@@ -35,6 +35,7 @@ MyWidget::MyWidget(DialogParent dialog_parent, QWidget *parent)
 
     connect(dialog_button, &QPushButton::clicked, this, [=]() {
         MyDialog *dialog = new MyDialog(parent_text, use_as_parent);
+        dialog->show();
     });
 
 
@@ -42,6 +43,7 @@ MyWidget::MyWidget(DialogParent dialog_parent, QWidget *parent)
 
     connect(window_button, &QPushButton::clicked, this, [=]() {
         MyWindow *window = new MyWindow(parent_text, use_as_parent);
+        window->show();
     });
 
 

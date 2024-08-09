@@ -5,11 +5,11 @@
 
 enum struct  DialogParent {THIS, NULLPTR, WINDOW};
 
-class MyWidget : public QWidget
+class MyMainWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MyWidget(DialogParent dialog_parent, QWidget *parent);
+    explicit MyMainWidget(DialogParent dialog_parent, QWidget *parent);
 
 signals:
 

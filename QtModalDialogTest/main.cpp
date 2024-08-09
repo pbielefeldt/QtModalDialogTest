@@ -4,8 +4,7 @@
 
 #include <QVBoxLayout>
 
-#include "mywidget.h"
-#include "mydialog.h"
+#include "mainwidget.h"
 
 int main(int argc, char**argv){
     QApplication app(argc, argv);
@@ -13,9 +12,9 @@ int main(int argc, char**argv){
     QWidget *mainWindow = new QWidget;
     mainWindow->setWindowTitle("Main Window");
 
-    MyWidget *widget1 = new MyWidget(DialogParent::THIS, mainWindow);
-    MyWidget *widget2 = new MyWidget(DialogParent::NULLPTR, mainWindow);
-    MyWidget *widget3 = new MyWidget(DialogParent::WINDOW, mainWindow);
+    MyMainWidget *widget1 = new MyMainWidget(DialogParent::THIS, mainWindow);
+    MyMainWidget *widget2 = new MyMainWidget(DialogParent::NULLPTR, mainWindow);
+    MyMainWidget *widget3 = new MyMainWidget(DialogParent::WINDOW, mainWindow);
 
     QHBoxLayout *layout = new QHBoxLayout(mainWindow);
     layout->addWidget(widget1);

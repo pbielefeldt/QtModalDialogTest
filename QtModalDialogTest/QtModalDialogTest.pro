@@ -5,11 +5,11 @@ QT=core gui widgets
 
 SOURCES += \
     main.cpp \
+    mainwidget.cpp \
     mydialog.cpp \
-    mywidget.cpp \
     mywindow.cpp
 
 HEADERS += \
+    mainwidget.h \
     mydialog.h \
-    mywidget.h \
     mywindow.h

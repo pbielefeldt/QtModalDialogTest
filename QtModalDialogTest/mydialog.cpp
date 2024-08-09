@@ -4,18 +4,17 @@
 #include <QVBoxLayout>
 
 MyDialog::MyDialog(const QString& text, QWidget *parent)
-    : QDialog(parent)
+    : QDialog{parent}
 {
     QLabel *content = new QLabel("QDialog with \n\n\'" + text + "\' as QWidget *parent.", parent);
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(content);
     this->setLayout(layout);
 
-    this->setWindowFlag(Qt::Window);
-    this->resize(300, 200);
+    setWindowFlag(Qt::Window);
+    resize(300, 200);
     setWindowModality(Qt::WindowModal);
     printInfo();
-    this->show();
 }
 
 void MyDialog::printInfo() const
