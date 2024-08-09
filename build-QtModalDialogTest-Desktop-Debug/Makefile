@@ -54,13 +54,17 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../QtModalDialogTest/main.cpp \
 		../QtModalDialogTest/mydialog.cpp \
-		../QtModalDialogTest/mywidget.cpp moc_mydialog.cpp \
-		moc_mywidget.cpp
+		../QtModalDialogTest/mywidget.cpp \
+		../QtModalDialogTest/mywindow.cpp moc_mydialog.cpp \
+		moc_mywidget.cpp \
+		moc_mywindow.cpp
 OBJECTS       = main.o \
 		mydialog.o \
 		mywidget.o \
+		mywindow.o \
 		moc_mydialog.o \
-		moc_mywidget.o
+		moc_mywidget.o \
+		moc_mywindow.o
 DIST          = /usr/lib64/qt6/mkspecs/features/spec_pre.prf \
 		/usr/lib64/qt6/mkspecs/common/unix.conf \
 		/usr/lib64/qt6/mkspecs/common/linux.conf \
@@ -240,9 +244,11 @@ DIST          = /usr/lib64/qt6/mkspecs/features/spec_pre.prf \
 		/usr/lib64/qt6/mkspecs/features/yacc.prf \
 		/usr/lib64/qt6/mkspecs/features/lex.prf \
 		../QtModalDialogTest/QtModalDialogTest.pro ../QtModalDialogTest/mydialog.h \
-		../QtModalDialogTest/mywidget.h ../QtModalDialogTest/main.cpp \
+		../QtModalDialogTest/mywidget.h \
+		../QtModalDialogTest/mywindow.h ../QtModalDialogTest/main.cpp \
 		../QtModalDialogTest/mydialog.cpp \
-		../QtModalDialogTest/mywidget.cpp
+		../QtModalDialogTest/mywidget.cpp \
+		../QtModalDialogTest/mywindow.cpp
 QMAKE_TARGET  = QtModalDialogTest
 DESTDIR       = 
 TARGET        = QtModalDialogTest
@@ -633,8 +639,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../QtModalDialogTest/mydialog.h ../QtModalDialogTest/mywidget.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../QtModalDialogTest/main.cpp ../QtModalDialogTest/mydialog.cpp ../QtModalDialogTest/mywidget.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../QtModalDialogTest/mydialog.h ../QtModalDialogTest/mywidget.h ../QtModalDialogTest/mywindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../QtModalDialogTest/main.cpp ../QtModalDialogTest/mydialog.cpp ../QtModalDialogTest/mywidget.cpp ../QtModalDialogTest/mywindow.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -660,9 +666,9 @@ benchmark: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_mydialog.cpp moc_mywidget.cpp
+compiler_moc_header_make_all: moc_mydialog.cpp moc_mywidget.cpp moc_mywindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mydialog.cpp moc_mywidget.cpp
+	-$(DEL_FILE) moc_mydialog.cpp moc_mywidget.cpp moc_mywindow.cpp
 moc_mydialog.cpp: ../QtModalDialogTest/mydialog.h \
 		/usr/lib/qt6/moc
 	/usr/lib/qt6/moc $(DEFINES) -D__cplusplus= -I/usr/lib64/qt6/mkspecs/linux-g++ -I/home/yaepts/Workbench/QtModalDialogTest/QtModalDialogTest -I/usr/include/qt6 -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtCore -I. -I/usr/include -I/usr/local/include ../QtModalDialogTest/mydialog.h -o moc_mydialog.cpp
@@ -670,6 +676,10 @@ moc_mydialog.cpp: ../QtModalDialogTest/mydialog.h \
 moc_mywidget.cpp: ../QtModalDialogTest/mywidget.h \
 		/usr/lib/qt6/moc
 	/usr/lib/qt6/moc $(DEFINES) -D__cplusplus= -I/usr/lib64/qt6/mkspecs/linux-g++ -I/home/yaepts/Workbench/QtModalDialogTest/QtModalDialogTest -I/usr/include/qt6 -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtCore -I. -I/usr/include -I/usr/local/include ../QtModalDialogTest/mywidget.h -o moc_mywidget.cpp
+
+moc_mywindow.cpp: ../QtModalDialogTest/mywindow.h \
+		/usr/lib/qt6/moc
+	/usr/lib/qt6/moc $(DEFINES) -D__cplusplus= -I/usr/lib64/qt6/mkspecs/linux-g++ -I/home/yaepts/Workbench/QtModalDialogTest/QtModalDialogTest -I/usr/include/qt6 -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtCore -I. -I/usr/include -I/usr/local/include ../QtModalDialogTest/mywindow.h -o moc_mywindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -695,14 +705,21 @@ mydialog.o: ../QtModalDialogTest/mydialog.cpp ../QtModalDialogTest/mydialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mydialog.o ../QtModalDialogTest/mydialog.cpp
 
 mywidget.o: ../QtModalDialogTest/mywidget.cpp ../QtModalDialogTest/mywidget.h \
-		../QtModalDialogTest/mydialog.h
+		../QtModalDialogTest/mydialog.h \
+		../QtModalDialogTest/mywindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mywidget.o ../QtModalDialogTest/mywidget.cpp
+
+mywindow.o: ../QtModalDialogTest/mywindow.cpp ../QtModalDialogTest/mywindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mywindow.o ../QtModalDialogTest/mywindow.cpp
 
 moc_mydialog.o: moc_mydialog.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mydialog.o moc_mydialog.cpp
 
 moc_mywidget.o: moc_mywidget.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mywidget.o moc_mywidget.cpp
+
+moc_mywindow.o: moc_mywindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mywindow.o moc_mywindow.cpp
 
 ####### Install
 

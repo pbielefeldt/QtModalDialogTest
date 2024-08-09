@@ -11,6 +11,9 @@ public:
 
 signals:
 
+private:
+    void printInfo() const;
+
 };
 
 #endif // MYDIALOG_H

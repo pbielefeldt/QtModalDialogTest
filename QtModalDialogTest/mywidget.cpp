@@ -1,5 +1,6 @@
 #include "mywidget.h"
 #include "mydialog.h"
+#include "mywindow.h"
 
 #include <QPushButton>
 #include <QVBoxLayout>
@@ -29,17 +30,23 @@ MyWidget::MyWidget(DialogParent dialog_parent, QWidget *parent)
         break;
     }
 
-    QString dialog_text = "Dialog with \n\n" + parent_text + " as QWidget *parent\".";
-    QPushButton *button = new QPushButton("Open " + parent_text + " Dialog", this);
 
-    connect(button, &QPushButton::clicked, this, [=]() {
-        MyDialog *dialog = new MyDialog(dialog_text, use_as_parent);
-        // dialog->setWindowModality(Qt::ApplicationModal);
-        dialog->setWindowModality(Qt::WindowModal);
-        dialog->show();
+    QPushButton *dialog_button = new QPushButton("Open " + parent_text + " Dialog", this);
+
+    connect(dialog_button, &QPushButton::clicked, this, [=]() {
+        MyDialog *dialog = new MyDialog(parent_text, use_as_parent);
     });
 
+
+    QPushButton *window_button = new QPushButton("Open " + parent_text + " Window", this);
+
+    connect(window_button, &QPushButton::clicked, this, [=]() {
+        MyWindow *window = new MyWindow(parent_text, use_as_parent);
+    });
+
+
     QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->addWidget(button);
+    layout->addWidget(dialog_button);
+    layout->addWidget(window_button);
     setLayout(layout);
 }
