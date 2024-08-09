@@ -13,14 +13,14 @@ int main(int argc, char**argv){
     QWidget *mainWindow = new QWidget;
     mainWindow->setWindowTitle("Main Window");
 
-    // QPushButton button("Hello World!");
-    // button.show();
-    MyWidget *widget1 = new MyWidget("Dialog 1");
-    MyWidget *widget2 = new MyWidget("Dialog 2");
+    MyWidget *widget1 = new MyWidget(DialogParent::THIS, mainWindow);
+    MyWidget *widget2 = new MyWidget(DialogParent::NULLPTR, mainWindow);
+    MyWidget *widget3 = new MyWidget(DialogParent::WINDOW, mainWindow);
 
     QHBoxLayout *layout = new QHBoxLayout(mainWindow);
     layout->addWidget(widget1);
     layout->addWidget(widget2);
+    layout->addWidget(widget3);
     mainWindow->setLayout(layout);
 
     mainWindow->show();

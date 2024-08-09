@@ -687,7 +687,8 @@ compiler_clean: compiler_moc_header_clean
 
 ####### Compile
 
-main.o: ../QtModalDialogTest/main.cpp 
+main.o: ../QtModalDialogTest/main.cpp ../QtModalDialogTest/mywidget.h \
+		../QtModalDialogTest/mydialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../QtModalDialogTest/main.cpp
 
 mydialog.o: ../QtModalDialogTest/mydialog.cpp ../QtModalDialogTest/mydialog.h

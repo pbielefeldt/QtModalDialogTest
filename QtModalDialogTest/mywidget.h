@@ -3,11 +3,13 @@
 
 #include <QWidget>
 
+enum struct  DialogParent {THIS, NULLPTR, WINDOW};
+
 class MyWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MyWidget(const QString& text, QWidget *parent = nullptr);
+    explicit MyWidget(DialogParent dialog_parent, QWidget *parent);
 
 signals:
 
