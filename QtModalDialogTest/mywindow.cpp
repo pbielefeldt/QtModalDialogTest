@@ -2,6 +2,7 @@
 
 #include <QLabel>
 #include <QVBoxLayout>
+#include <QMetaEnum>
 
 MyWindow::MyWindow(const QString &text, Qt::WindowModality &modality, QWidget *parent)
     : QWidget{parent}
@@ -14,25 +15,7 @@ MyWindow::MyWindow(const QString &text, Qt::WindowModality &modality, QWidget *p
     setWindowFlag(Qt::Window);
     resize(300, 200);
     setWindowModality(modality);
-    printInfo();
-}
 
-void MyWindow::printInfo() const
-{
-    QString modality = "n.a.";
-    switch (this->windowModality()) {
-    case Qt::WindowModality::NonModal:
-        modality = "non modal";
-        break;
-    case Qt::WindowModality::WindowModal:
-        modality = "window modal";
-        break;
-    case Qt::WindowModality::ApplicationModal:
-        modality = "application modal";
-        break;
-    default:
-        break;
-    }
-
-    qDebug() << "this is a MyWindow, modality: " + modality;
+    const auto mod_text = QString(QMetaEnum::fromType<Qt::WindowModality>().key(this->windowModality()));
+    qDebug() << QString("this is a MyDialog, modality: ") + mod_text;
 }

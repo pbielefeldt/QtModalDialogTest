@@ -11,9 +11,6 @@ public:
 
 signals:
 
-private:
-    void printInfo() const;
-
 };
 
 #endif // MYWINDOW_H

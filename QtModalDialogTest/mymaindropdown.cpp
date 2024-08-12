@@ -13,6 +13,8 @@ MyMainDropdown::MyMainDropdown(QWidget *parent)
     for (int i = 0; i < metaEnum.keyCount(); ++i) {
         comboBox->addItem(metaEnum.key(i));
     }
+    // Set the default value of the QComboBox to match Qt::WindowModal
+    comboBox->setCurrentIndex((int)Qt::WindowModal);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(comboBox);
