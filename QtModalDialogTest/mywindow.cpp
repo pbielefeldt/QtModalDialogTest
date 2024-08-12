@@ -3,7 +3,7 @@
 #include <QLabel>
 #include <QVBoxLayout>
 
-MyWindow::MyWindow(const QString &text, QWidget *parent)
+MyWindow::MyWindow(const QString &text, Qt::WindowModality &modality, QWidget *parent)
     : QWidget{parent}
 {
     QLabel *content = new QLabel("QWindow with \n\n\'" + text + "\' as QWidget *parent.", parent);
@@ -13,7 +13,7 @@ MyWindow::MyWindow(const QString &text, QWidget *parent)
 
     setWindowFlag(Qt::Window);
     resize(300, 200);
-    setWindowModality(Qt::WindowModal);
+    setWindowModality(modality);
     printInfo();
 }
 

@@ -6,6 +6,7 @@
 #include <QVBoxLayout>
 #include <QDialog>
 #include <QLabel>
+#include <QMetaEnum>
 
 MyMainWidget::MyMainWidget(DialogParent dialog_parent, QWidget *parent)
     : QWidget{parent}
@@ -34,7 +35,7 @@ MyMainWidget::MyMainWidget(DialogParent dialog_parent, QWidget *parent)
     QPushButton *dialog_button = new QPushButton("Open " + parent_text + " Dialog", this);
 
     connect(dialog_button, &QPushButton::clicked, this, [=]() {
-        MyDialog *dialog = new MyDialog(parent_text, use_as_parent);
+        MyDialog *dialog = new MyDialog(parent_text, selectedModality, use_as_parent);
         dialog->show();
     });
 
@@ -42,7 +43,7 @@ MyMainWidget::MyMainWidget(DialogParent dialog_parent, QWidget *parent)
     QPushButton *window_button = new QPushButton("Open " + parent_text + " Window", this);
 
     connect(window_button, &QPushButton::clicked, this, [=]() {
-        MyWindow *window = new MyWindow(parent_text, use_as_parent);
+        MyWindow *window = new MyWindow(parent_text, selectedModality, use_as_parent);
         window->show();
     });
 
@@ -51,4 +52,10 @@ MyMainWidget::MyMainWidget(DialogParent dialog_parent, QWidget *parent)
     layout->addWidget(dialog_button);
     layout->addWidget(window_button);
     setLayout(layout);
+}
+
+void MyMainWidget::setModality(int index)
+{
+    selectedModality = static_cast<Qt::WindowModality>(index);
+    // qDebug() << "modality selected by user: " <<  QMetaEnum::fromType<Qt::WindowModality>().key(index);
 }

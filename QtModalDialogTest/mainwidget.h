@@ -11,7 +11,13 @@ class MyMainWidget : public QWidget
 public:
     explicit MyMainWidget(DialogParent dialog_parent, QWidget *parent);
 
+private:
+    Qt::WindowModality selectedModality;
+
 signals:
+
+public slots:
+    void setModality(int index);
 
 };
 
